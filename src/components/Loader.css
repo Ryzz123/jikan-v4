@@ -1,0 +1,51 @@
+.dots {
+  width: 13.4px;
+  height: 13.4px;
+  background: #ffffff;
+  color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 22.4px 0, -22.4px 0;
+  animation: dots-u8fzftmd 1s infinite linear alternate;
+}
+
+@keyframes dots-u8fzftmd {
+  0% {
+    box-shadow: 22.4px 0, -22.4px 0;
+    background: rgba(255, 255, 255, 0.13);
+  }
+
+  33% {
+    box-shadow: 22.4px 0, -22.4px 0 rgba(255, 255, 255, 0.13);
+    background: rgba(255, 255, 255, 0.13);
+  }
+
+  66% {
+    box-shadow: 22.4px 0 rgba(255, 255, 255, 0.13), -22.4px 0;
+    background: rgba(255, 255, 255, 0.13);
+  }
+}
+
+.progress {
+    width: 96px;
+    height: 17.6px;
+    border-radius: 16px;
+    color: #ffffff;
+    border: 1.6px solid;
+    position: relative;
+}
+
+.progress::before {
+  content: '';
+  position: absolute;
+  margin: 2.2px;
+  inset: 0 100% 0 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: progress-pf82op 2s infinite;
+}
+
+@keyframes progress-pf82op {
+  100% {
+    inset: 0;
+  }
+}

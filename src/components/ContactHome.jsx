@@ -5,11 +5,12 @@ import {
   Input,
   Alert,
   AlertIcon,
-  Spinner,
+  Box
 } from '@chakra-ui/react';
 import { Textarea } from '@chakra-ui/react';
 import emailjs from '@emailjs/browser';
 import React, { useRef, useState } from 'react';
+import './Loader.css'
 
 const ContactHome = () => {
   const [alert, setAlert] = useState(false);
@@ -103,7 +104,7 @@ const ContactHome = () => {
         <FormLabel>Pesan</FormLabel>
         <Textarea ref={pesan} name="message" placeholder="Masukan Pesan" />
         <Button width="full" color="white" bg="blue.500" mt={2} type="submit">
-          {spinner ? <Spinner /> : 'KIRIM'}
+          {spinner ? <Box className="progress"></Box> : 'KIRIM'}
         </Button>
       </form>
     </FormControl>

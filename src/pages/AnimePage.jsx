@@ -5,33 +5,37 @@ import AnimeForm from '../containers/AnimeForm';
 import AnimeHome from '../containers/AnimeHome';
 
 const AnimePage = () => {
-    const [list, setList] = useState('');
-    const [anime, setAnime] = useState([]);
+  const [list, setList] = useState('');
+  const [anime, setAnime] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const getAnime = async () => {
-            try {
-                const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${list}`)
-                setAnime(response.data.data)
-            } catch(err) {
-                console.log(err)
-            }
-        }
-        getAnime();
-    }, [list])
+  useEffect(() => {
+    const getAnime = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.jikan.moe/v4/anime?q=${list}`
+        );
+        setAnime(response.data.data);
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getAnime();
+  }, [list]);
 
-    const addHandler = (e) => {
-        setList(e)
-    }
+  const addHandler = e => {
+    setList(e);
+  };
 
   return (
     <Container mb={20} pt={[16, 20, 20]} maxW="container.xl">
       <SimpleGrid columns={[1, 2, 2]} spacingX="20px" spacingY="20px">
         <Box>
-            <AnimeForm form={addHandler} />
+          <AnimeForm form={addHandler} />
         </Box>
         <Box>
-          <AnimeHome anime={anime} />
+          <AnimeHome loading={loading} anime={anime} />
         </Box>
       </SimpleGrid>
     </Container>

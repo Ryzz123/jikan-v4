@@ -1,10 +1,10 @@
 import React from "react";
 import ListAnime from "../components/ListAnime";
 
-const AnimeHome = ({anime}) => {
+const AnimeHome = ({anime, loading}) => {
   return (
     <> 
-        <ListAnime anime={anime} />
+        <ListAnime loading={loading} anime={anime} />
     </>
   )
 };
