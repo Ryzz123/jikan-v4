@@ -1,40 +1,34 @@
 import React from 'react';
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
+import theme from './theme/Theme';
+import Footer from './components/Footer';
+import AnimePage from './pages/AnimePage';
+import AnimePagesById from './pages/AnimePagesById';
+import NotFound from './pages/NotFound';
+import MangaPage from './pages/MangaPage';
+import MangaPageById from './pages/MangaPageById';
+import LoadPages from './pages/LoadPages';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
+      <Navbar ColorModeSwitcher={ColorModeSwitcher} />
+      <LoadPages />
+      <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/anime' element={<AnimePage />} />
+          <Route path='/manga' element={<MangaPage />} />
+          <Route path='/manga/:manga_id' element={<MangaPageById />} />
+          <Route path='/anime/:anime_id' element={<AnimePagesById />} />
+          <Route path='*' element={<NotFound />} />
+      </Routes>
+      <Footer />
     </ChakraProvider>
   );
 }
