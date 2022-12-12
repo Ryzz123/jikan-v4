@@ -1,8 +1,6 @@
 .dots {
   width: 13.4px;
   height: 13.4px;
-  background: #ffffff;
-  color: #ffffff;
   border-radius: 50%;
   box-shadow: 22.4px 0, -22.4px 0;
   animation: dots-u8fzftmd 1s infinite linear alternate;
@@ -29,7 +27,6 @@
     width: 96px;
     height: 17.6px;
     border-radius: 16px;
-    color: #ffffff;
     border: 1.6px solid;
     position: relative;
 }

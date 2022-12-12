@@ -5,12 +5,13 @@ import {
   Input,
   Alert,
   AlertIcon,
-  Box
+  Box,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { Textarea } from '@chakra-ui/react';
 import emailjs from '@emailjs/browser';
 import React, { useRef, useState } from 'react';
-import './Loader.css'
+import './Loader.css';
 
 const ContactHome = () => {
   const [alert, setAlert] = useState(false);
@@ -21,9 +22,12 @@ const ContactHome = () => {
   const email = useRef();
   const pesan = useRef();
 
+  const bacKgroundLoad = useColorModeValue('white', 'white');
+  const color = useColorModeValue('black', 'white');
+
   const sendEmail = e => {
     e.preventDefault();
-    setSpinner(true)
+    setSpinner(true);
     if (
       name.current.value === '' ||
       email.current.value === '' ||
@@ -34,7 +38,7 @@ const ContactHome = () => {
         status: 'error',
         message: 'Form tidak boleh kosong!',
       });
-      setSpinner(false)
+      setSpinner(false);
       setTimeout(() => {
         setAlert(false);
       }, 3000);
@@ -54,7 +58,7 @@ const ContactHome = () => {
               status: 'success',
               message: 'Email berhasil dikirim',
             });
-            setSpinner(false)
+            setSpinner(false);
             setTimeout(() => {
               setAlert(false);
             }, 3000);
@@ -66,7 +70,7 @@ const ContactHome = () => {
               status: 'error',
               message: 'Email gagal dikirim',
             });
-            setSpinner(false)
+            setSpinner(false);
             setTimeout(() => {
               setAlert(false);
             }, 3000);
@@ -92,6 +96,7 @@ const ContactHome = () => {
           ref={name}
           name="to_name"
           type="text"
+          color={color}
           placeholder="Masukan Nama"
         />
         <FormLabel>Email</FormLabel>
@@ -99,12 +104,29 @@ const ContactHome = () => {
           ref={email}
           name="from_name"
           type="email"
+          color={color}
           placeholder="Masukan email"
         />
         <FormLabel>Pesan</FormLabel>
-        <Textarea ref={pesan} name="message" placeholder="Masukan Pesan" />
-        <Button width="full" color="white" bg="blue.500" mt={2} type="submit">
-          {spinner ? <Box className="progress"></Box> : 'KIRIM'}
+        <Textarea
+          ref={pesan}
+          name="message"
+          color={color}
+          placeholder="Masukan Pesan"
+        />
+        <Button
+          width="full"
+          _hover={{ background: 'blue.500' }}
+          color="white"
+          bg="blue.500"
+          mt={2}
+          type="submit"
+        >
+          {spinner ? (
+            <Box color={bacKgroundLoad} className="progress"></Box>
+          ) : (
+            'KIRIM'
+          )}
         </Button>
       </form>
     </FormControl>

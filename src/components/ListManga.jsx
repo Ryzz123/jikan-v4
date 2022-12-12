@@ -16,6 +16,8 @@ import './Loader.css'
 
 const ListManga = ({ manga, loading }) => {
   const backGround = useColorModeValue('white', '#001E3C');
+  const bacKgroundLoad = useColorModeValue('blue.500','white')
+
   return (
     <Card
       bg={backGround}
@@ -26,7 +28,7 @@ const ListManga = ({ manga, loading }) => {
         <Stack divider={<StackDivider />} spacing="4">
           {loading ? (
             <Box display='flex' justifyContent='center'>
-              <Box className="dots"></Box>
+              <Box  color={bacKgroundLoad} background={bacKgroundLoad} className="dots"></Box>
             </Box>
           ) : (
             <>
